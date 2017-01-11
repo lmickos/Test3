@@ -7,18 +7,28 @@ public interface ProductPropertyVisitor {
     /**
      * The visitor is visiting a "property leaf" in the hierartchy tree
      * @param prop The property visited
+     * @return True if the visit should continue. False if the visit should be aborted ended as fast as possible.
+     * Implementations may use this for both error hendling/premature abort situations or non error situations
+     * (e.g. when enough data has been collected)
      */
-    void visit(AttributeProductProperty prop);
+    boolean visit(AttributeProductProperty prop);
 
     /**
      * The visitor is entering a property group
      * @param group The group entered
+     * @return True if the visit should continue. False if the visit should be aborted ended as fast as possible.
+     * If true is returned, leave() MAY NOT BE EXECUTED for this visit
+     * Implementations may use this for both error hendling/premature abort situations or non error situations
+     * (e.g. when enough data has been collected)
      */
-    void enter(AttributeGroupProductProperty group);
+    boolean enter(AttributeGroupProductProperty group);
 
     /**
      * The visitor is leaving a property group
      * @param group The group we are about to exit
+     * @return True if the visit should continue. False if the visit should be aborted ended as fast as possible.
+     * Implementations may use this for both error hendling/premature abort situations or non error situations
+     * (e.g. when enough data has been collected)
      */
-    void leave(AttributeGroupProductProperty group);
+    boolean leave(AttributeGroupProductProperty group);
 }

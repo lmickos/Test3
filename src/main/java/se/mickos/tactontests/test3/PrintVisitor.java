@@ -5,15 +5,15 @@ package se.mickos.tactontests.test3;
  * Created by Lars-Erik on 2017-01-11.
  */
 public class PrintVisitor implements ProductPropertyVisitor {
-    public void visit(AttributeProductProperty prop) {
-
+    public boolean visit(AttributeProductProperty prop) {
+        return false;
     }
 
-    public void enter(AttributeGroupProductProperty group) {
-
+    public boolean enter(AttributeGroupProductProperty group) {
+        return false;
     }
 
-    public void leave(AttributeGroupProductProperty group) {
-
+    public boolean leave(AttributeGroupProductProperty group) {
+        return false;
     }
 }
