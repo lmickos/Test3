@@ -8,6 +8,8 @@ import java.util.*;
  * Created by Lars-Erik on 2017-01-11.
  */
 public class AttributeGroupProductProperty extends ProductProperty {
+    List<ProductProperty> subProps = new ArrayList();
+
     /**
      * Default Constructor
      */
@@ -29,6 +31,13 @@ public class AttributeGroupProductProperty extends ProductProperty {
      * @return True if the visit should continue. False if the visit should be aborted
      */
     public boolean accept(ProductPropertyVisitor visitor){
+        if (visitor.enter(this)){
+            // Loop all sub propoerties in correct order and accept, but abort if any call returns false
+            for (ProductProperty prop:subProps){
+                if (!prop.accept(visitor)) return false;
+            }
+            return visitor.leave(this);
+        } else return false;
     }
 
     /** Size of the group */
