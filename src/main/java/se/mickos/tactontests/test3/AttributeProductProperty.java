@@ -5,14 +5,13 @@ package se.mickos.tactontests.test3;
  * Created by Lars-Erik on 2017-01-11.
  */
 public class AttributeProductProperty extends ProductProperty {
-    private String name="";
     private String value="";
-    /**
-     * Default Constructor
-     */
-    public AttributeProductProperty(){
-
-    }
+//    /**
+//     * Default Constructor
+//     */
+//    public AttributeProductProperty(){
+//
+//    }
 
     /**
      * Constructor with initial data
@@ -20,7 +19,7 @@ public class AttributeProductProperty extends ProductProperty {
      * @param value Value of the property
      */
     public AttributeProductProperty(String name, String value){
-
+        super(name);
     }
 
     /**
@@ -28,13 +27,6 @@ public class AttributeProductProperty extends ProductProperty {
      */
     public String getValue(){
         return value;
-    }
-
-    /**
-     * Getter for the property name
-     */
-    public String getName(){
-        return name;
     }
 
     /**

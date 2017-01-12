@@ -5,12 +5,27 @@ package se.mickos.tactontests.test3;
  * Created by Lars-Erik on 2017-01-11.
  */
 public abstract class ProductProperty {
+    private String name="";
+
+    /**
+     * Default constructor
+     */
+    public ProductProperty(){
+    }
+
+    /**
+     * Constructor with data setup
+     * @param name Name of the property
+     */
+    public ProductProperty(String name){
+        this.name=name;
+    }
     /**
      * Retrieve the name of the property
      * @return Name as a string. May be null.
      */
     public String getName(){
-        return null;
+        return name;
     }
 
     /**

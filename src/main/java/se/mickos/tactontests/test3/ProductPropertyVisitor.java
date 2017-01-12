@@ -26,9 +26,11 @@ public interface ProductPropertyVisitor {
     /**
      * The visitor is leaving a property group
      * @param group The group we are about to exit
+     * @param interrupted A boolean that indicates if the visit was interrupted (aborted or prematurely finished)
+     *                    since entering (the matching enter() for this level).
      * @return True if the visit should continue. False if the visit should be aborted ended as fast as possible.
      * Implementations may use this for both error hendling/premature abort situations or non error situations
      * (e.g. when enough data has been collected)
      */
-    boolean leave(AttributeGroupProductProperty group);
+    boolean leave(AttributeGroupProductProperty group, boolean interrupted);
 }
