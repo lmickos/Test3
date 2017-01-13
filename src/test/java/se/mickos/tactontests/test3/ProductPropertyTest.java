@@ -8,9 +8,13 @@ import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
 
 /**
+ * JUnit test for the ProductPropertyTest class (or more specifically its subclasses)
+ * This implementation uses Mockito to verify expected behavior versus the Visitor pattern
  * Created by Lars-Erik on 2017-01-11.
  */
 public class ProductPropertyTest {
+    private static final String NAME1 = "Product Attributes";
+    private static final String NAME2 = "Attributes 1";
     private static final String KEY1 = "key1";
     private static final String VALUE1 = "value1";
     private static final String KEY2 = "key2";
@@ -54,7 +58,7 @@ public class ProductPropertyTest {
         AttributeProductProperty prop1 = new AttributeProductProperty(KEY1,VALUE1);
         AttributeProductProperty prop2 = new AttributeProductProperty(KEY2,VALUE2);
         AttributeProductProperty prop3 = new AttributeProductProperty(KEY3,VALUE3);
-        AttributeGroupProductProperty group1 = new AttributeGroupProductProperty(prop1,prop2,prop3);
+        AttributeGroupProductProperty group1 = new AttributeGroupProductProperty(NAME1,prop1,prop2,prop3);
         ProductPropertyVisitor visitor = mock(ProductPropertyVisitor.class);
         when(visitor.visit(any(AttributeProductProperty.class))).thenReturn(true);
         when(visitor.enter(group1)).thenReturn(true);
@@ -77,7 +81,7 @@ public class ProductPropertyTest {
         // Set up data
         AttributeProductProperty prop1 = new AttributeProductProperty(KEY1,VALUE1);
         AttributeGroupProductProperty group2 = new AttributeGroupProductProperty();
-        AttributeGroupProductProperty group1 = new AttributeGroupProductProperty(prop1,group2);
+        AttributeGroupProductProperty group1 = new AttributeGroupProductProperty(NAME1,prop1,group2);
         ProductPropertyVisitor visitor = mock(ProductPropertyVisitor.class);
         when(visitor.visit(prop1)).thenReturn(true);
         when(visitor.enter(any(AttributeGroupProductProperty.class))).thenReturn(true);
@@ -99,8 +103,8 @@ public class ProductPropertyTest {
     public void visitHierarchy_with_OneGroupContainingOneAttribute(){
         // Set up data
         AttributeProductProperty prop1 = new AttributeProductProperty(KEY1,VALUE1);
-        AttributeGroupProductProperty group2 = new AttributeGroupProductProperty(prop1);
-        AttributeGroupProductProperty group1 = new AttributeGroupProductProperty(group2);
+        AttributeGroupProductProperty group2 = new AttributeGroupProductProperty(NAME2,prop1);
+        AttributeGroupProductProperty group1 = new AttributeGroupProductProperty(NAME1,group2);
         ProductPropertyVisitor visitor = mock(ProductPropertyVisitor.class);
         when(visitor.visit(prop1)).thenReturn(true);
         when(visitor.enter(any(AttributeGroupProductProperty.class))).thenReturn(true);
@@ -122,7 +126,7 @@ public class ProductPropertyTest {
     public void visitHierarchy_with_OneAttribute_AbortBefore(){
         // Set up data
         AttributeProductProperty prop1 = new AttributeProductProperty(KEY1,VALUE1);
-        AttributeGroupProductProperty group1 = new AttributeGroupProductProperty(prop1);
+        AttributeGroupProductProperty group1 = new AttributeGroupProductProperty(NAME1,prop1);
         ProductPropertyVisitor visitor = mock(ProductPropertyVisitor.class);
         when(visitor.visit(prop1)).thenReturn(true);
         when(visitor.enter(group1)).thenReturn(false);
@@ -141,7 +145,7 @@ public class ProductPropertyTest {
     public void visitHierarchy_with_OneAttribute_AbortAfter(){
         // Set up data
         AttributeProductProperty prop1 = new AttributeProductProperty(KEY1,VALUE1);
-        AttributeGroupProductProperty group1 = new AttributeGroupProductProperty(prop1);
+        AttributeGroupProductProperty group1 = new AttributeGroupProductProperty(NAME1,prop1);
         ProductPropertyVisitor visitor = mock(ProductPropertyVisitor.class);
         when(visitor.visit(prop1)).thenReturn(true);
         when(visitor.enter(group1)).thenReturn(true);
@@ -161,7 +165,7 @@ public class ProductPropertyTest {
     public void visitHierarchy_with_OneAttribute_AbortIn(){
         // Set up data
         AttributeProductProperty prop1 = new AttributeProductProperty(KEY1,VALUE1);
-        AttributeGroupProductProperty group1 = new AttributeGroupProductProperty(prop1);
+        AttributeGroupProductProperty group1 = new AttributeGroupProductProperty(NAME1,prop1);
         ProductPropertyVisitor visitor = mock(ProductPropertyVisitor.class);
         when(visitor.visit(prop1)).thenReturn(false);
         when(visitor.enter(group1)).thenReturn(true);

@@ -4,11 +4,11 @@ import java.util.*;
 
 /**
  * Class that represents an attribute group.
- * Implements a compatible subset of the List<ProductProperty> interface
+ * Mostly implements a compatible subset of the List<ProductProperty> interface
  * Created by Lars-Erik on 2017-01-11.
  */
 public class AttributeGroupProductProperty extends ProductProperty {
-    List<ProductProperty> subProps = new ArrayList();
+    List<ProductProperty> subProps = new ArrayList<ProductProperty>();
 
     /**
      * Default Constructor
@@ -30,7 +30,8 @@ public class AttributeGroupProductProperty extends ProductProperty {
      * Constructor with initial array data
      * @param properties A list of properties to add
      */
-    public AttributeGroupProductProperty(ProductProperty... properties){
+    public AttributeGroupProductProperty(String name, ProductProperty... properties){
+        super(name);
         for (ProductProperty prop:properties) subProps.add(prop);
     }
 
@@ -72,6 +73,26 @@ public class AttributeGroupProductProperty extends ProductProperty {
         return null;
     }
 
+    /** Adda a collection of preperties */
+    public boolean addAll(Collection<? extends ProductProperty> c){
+        return subProps.addAll(c);
+    }
+
+    /** Add a property at a given position */
+    public void add(int index, ProductProperty element) {
+        subProps.add(index, element);
+    }
+
+    /**
+     * Copy the properties from another group into this
+     * @param group The group to copy from
+     * @param copyName Indicate whether to copy the name and overwrite the current name.
+     */
+    public void copyFrom(AttributeGroupProductProperty group, boolean copyName){
+        addAll(group.subProps);
+        if (copyName) setName(group.getName());
+    }
+
 /*
 The following methods are candidates for future implementation
 
@@ -79,9 +100,6 @@ The following methods are candidates for future implementation
         return null;
     }
 
-    public void add(int index, ProductProperty element) {
-
-    }
 
     public ProductProperty remove(int index) {
         return null;

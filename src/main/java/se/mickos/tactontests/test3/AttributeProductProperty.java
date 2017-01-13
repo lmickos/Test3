@@ -6,12 +6,12 @@ package se.mickos.tactontests.test3;
  */
 public class AttributeProductProperty extends ProductProperty {
     private String value="";
-//    /**
-//     * Default Constructor
-//     */
-//    public AttributeProductProperty(){
-//
-//    }
+    /**
+     * Default Constructor
+     */
+    public AttributeProductProperty(){
+
+    }
 
     /**
      * Constructor with initial data
@@ -20,6 +20,7 @@ public class AttributeProductProperty extends ProductProperty {
      */
     public AttributeProductProperty(String name, String value){
         super(name);
+        this.value=value;
     }
 
     /**
@@ -27,6 +28,14 @@ public class AttributeProductProperty extends ProductProperty {
      */
     public String getValue(){
         return value;
+    }
+
+    /**
+     * Set the name of the property
+     * @param value as a string. May be null.
+     */
+    public void getName(String value){
+        this.value=value;
     }
 
     /**

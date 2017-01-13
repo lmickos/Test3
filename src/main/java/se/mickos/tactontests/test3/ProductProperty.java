@@ -29,6 +29,14 @@ public abstract class ProductProperty {
     }
 
     /**
+     * Set the name of the property
+     * @param  name as a string. May be null.
+     */
+    public void setName(String name){
+        this.name=name;
+    }
+
+    /**
      * Visitor pattern accept method
      * @param  visitor The visiting object
      * @return True if the visit should continue. False if the visit should be aborted ended as fast as possible.
