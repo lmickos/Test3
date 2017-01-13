@@ -3,7 +3,10 @@ version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 
-sourceCompatibility = 1.8
+// The code has been written to run on most modern versions of java, but has only been
+// successfully tested to run using both a Java7 and a Java8 JDK.
+// Dependencies may incur further limitations. JDK8 is recommended
+//sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
